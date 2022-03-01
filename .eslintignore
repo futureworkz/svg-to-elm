@@ -1,0 +1,9 @@
+# No linting for elm packages
+elm-stuff
+
+# No linting in tests
+tests
+
+# No linting for public folder including bundle.js
+public
+
