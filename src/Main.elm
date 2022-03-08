@@ -2,6 +2,7 @@ module Main exposing (..)
 
 import Browser
 import Css exposing (..)
+import Css.Media exposing (only, screen, withMedia)
 import Html
 import Html.Styled exposing (Attribute, Html, a, code, div, h2, img, input, p, span, text, textarea)
 import Html.Styled.Attributes exposing (autocomplete, css, href, placeholder, src, type_, value)
@@ -226,7 +227,7 @@ settingItem titleValue importValue exposingValue onImport onExposing =
             , div [ css style.asContainer ]
                 [ span [ css style.subLabelImport ] [ text "exposing (" ]
                 , input [ value exposingValue, autocomplete False, css style.inputExposing, onInput onExposing ] []
-                , span [ css style.subLabelImport ] [ text ")" ]
+                , span [ css style.rightSubLabelImport ] [ text ")" ]
                 ]
             ]
         ]
@@ -247,7 +248,7 @@ viewInput t p v toMsg =
     input [ type_ t, placeholder p, value v, onInput toMsg ] []
 
 
-style : { container : List Style, headerContainer : List Style, contentContainter : List Style, title : List Style, buttonsContainer : List Style, settingContainer : List Style, actionlabel : List Style, bodyContainer : List Style, inputContainer : List Style, importSettings : List Style, importSetting : List Style, importContainer : List Style, asContainer : List Style, labelImport : List Style, subLabelImport : List Style, inputImport : List Style, inputExposing : List Style, inputHTML : List Style, inputHTMLLabel : List Style, textAreaHTML : List Style, outputContainer : List Style, preContainer : List Style, inputsContainer : List Style, hiddenImportSettings : List Style, footerContainer : List Style, logo : List Style }
+style : { container : List Style, headerContainer : List Style, contentContainter : List Style, title : List Style, buttonsContainer : List Style, settingContainer : List Style, actionlabel : List Style, bodyContainer : List Style, inputContainer : List Style, importSettings : List Style, importSetting : List Style, importContainer : List Style, asContainer : List Style, labelImport : List Style, subLabelImport : List Style, inputImport : List Style, inputExposing : List Style, inputHTML : List Style, inputHTMLLabel : List Style, textAreaHTML : List Style, outputContainer : List Style, preContainer : List Style, inputsContainer : List Style, hiddenImportSettings : List Style, footerContainer : List Style, logo : List Style, rightSubLabelImport : List Style }
 style =
     { container =
         [ height (vh 100)
@@ -292,11 +293,18 @@ style =
         [ displayFlex
         , flexGrow (num 1)
         , overflow hidden
+        , withMedia [ only screen [ Css.Media.maxWidth (px 800) ] ]
+            [ flexDirection column
+            ]
         ]
     , inputContainer =
         [ width (pct 50)
         , displayFlex
         , flexDirection column
+        , withMedia [ only screen [ Css.Media.maxWidth (px 1150) ] ]
+            [ width (pct 100)
+            , flexGrow (num 1)
+            ]
         ]
     , importSettings =
         [ padding (px 16)
@@ -311,13 +319,27 @@ style =
         , flexGrow (num 1)
         , marginBottom (px 32)
         , alignItems center
+        , withMedia [ only screen [ Css.Media.maxWidth (px 1150) ] ]
+            [ flexDirection column
+            ]
         ]
     , importContainer =
         [ width (pct 30)
+        , marginRight (px 10)
+        , withMedia [ only screen [ Css.Media.maxWidth (px 1150) ] ]
+            [ displayFlex
+            , justifyContent center
+            , alignItems center
+            , marginBottom (px 10)
+            ]
         ]
     , inputsContainer =
         [ displayFlex
         , width (pct 100)
+        , withMedia [ only screen [ Css.Media.maxWidth (px 1150) ] ]
+            [ flexDirection column
+            , alignItems center
+            ]
         ]
     , labelImport =
         [ margin (px 0)
@@ -325,17 +347,39 @@ style =
         ]
     , asContainer =
         [ flex (int 1)
+        , position relative
         , paddingLeft (px 5)
         , borderBottom3 (px 2) solid (hex "#000000")
+        , withMedia [ only screen [ Css.Media.maxWidth (px 1150) ] ]
+            [ marginBottom (px 10)
+            ]
         ]
     , subLabelImport =
-        [ fontSize (px 14)
+        [ position absolute
+        , top (px 0)
+        , left (px 0)
+        , displayFlex
+        , alignItems center
+        , fontSize (px 14)
+        , color (hex "#767d8a")
+        , marginRight (px 5)
+        ]
+    , rightSubLabelImport =
+        [ position absolute
+        , top (px 0)
+        , right (px 0)
+        , displayFlex
+        , alignItems center
+        , fontSize (px 14)
         , color (hex "#767d8a")
         , marginRight (px 5)
         ]
     , inputImport =
-        [ borderWidth (px 0)
+        [ width (pct 100)
+        , borderWidth (px 0)
         , fontSize (px 16)
+        , paddingLeft (px 32)
+        , paddingRight (px 40)
         , focus
             [ outline zero
             ]
@@ -343,7 +387,7 @@ style =
     , inputExposing =
         [ borderWidth (px 0)
         , fontSize (px 16)
-        , paddingLeft (px 16)
+        , paddingLeft (px 100)
         , paddingRight (px 16)
         , focus
             [ outline zero
@@ -365,6 +409,10 @@ style =
         [ width (pct 50)
         , displayFlex
         , flexDirection column
+        , withMedia [ only screen [ Css.Media.maxWidth (px 800) ] ]
+            [ width (pct 100)
+            , flexGrow (num 1)
+            ]
         ]
     , preContainer =
         [ displayFlex
@@ -372,7 +420,6 @@ style =
         , backgroundColor (hex "#000000")
         , margin (px 0)
         , color (hex "#ffffff")
-        , padding2 (px 20) (px 20)
         ]
     , footerContainer =
         [ width (pct 100)
