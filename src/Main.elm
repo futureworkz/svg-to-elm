@@ -3,7 +3,6 @@ module Main exposing (..)
 import Browser
 import Css exposing (..)
 import Css.Media exposing (only, screen, withMedia)
-import Html
 import Html.Styled exposing (Attribute, Html, a, code, div, h2, img, input, p, span, text, textarea)
 import Html.Styled.Attributes exposing (autocomplete, css, href, placeholder, src, type_, value)
 import Html.Styled.Events exposing (onClick, onInput)
@@ -301,7 +300,7 @@ style =
         [ width (pct 50)
         , displayFlex
         , flexDirection column
-        , withMedia [ only screen [ Css.Media.maxWidth (px 1150) ] ]
+        , withMedia [ only screen [ Css.Media.maxWidth (px 800) ] ]
             [ width (pct 100)
             , flexGrow (num 1)
             ]
@@ -310,6 +309,9 @@ style =
         [ padding (px 16)
         , backgroundColor (hex "#ffffff")
         , boxShadow4 (px -5) (px -4) (px 18) (hex "#000000")
+        , withMedia [ only screen [ Css.Media.maxWidth (px 1150) ] ]
+            [ overflow scroll
+            ]
         ]
     , hiddenImportSettings =
         [ display none
@@ -344,6 +346,7 @@ style =
     , labelImport =
         [ margin (px 0)
         , fontWeight (int 600)
+        , textAlign center
         ]
     , asContainer =
         [ flex (int 1)
@@ -404,6 +407,7 @@ style =
         ]
     , textAreaHTML =
         [ flexGrow (num 1)
+        , padding2 (px 10) (px 10)
         ]
     , outputContainer =
         [ width (pct 50)
@@ -420,6 +424,7 @@ style =
         , backgroundColor (hex "#000000")
         , margin (px 0)
         , color (hex "#ffffff")
+        , padding2 (px 10) (px 10)
         ]
     , footerContainer =
         [ width (pct 100)
