@@ -306,11 +306,13 @@ style =
             ]
         ]
     , importSettings =
-        [ padding (px 16)
+        [ position absolute
+        , padding (px 16)
         , backgroundColor (hex "#ffffff")
         , boxShadow4 (px -5) (px -4) (px 18) (hex "#000000")
-        , withMedia [ only screen [ Css.Media.maxWidth (px 1150) ] ]
+        , withMedia [ only screen [ Css.Media.maxWidth (px 800) ] ]
             [ overflow scroll
+            , position relative
             ]
         ]
     , hiddenImportSettings =
@@ -321,14 +323,14 @@ style =
         , flexGrow (num 1)
         , marginBottom (px 32)
         , alignItems center
-        , withMedia [ only screen [ Css.Media.maxWidth (px 1150) ] ]
+        , withMedia [ only screen [ Css.Media.maxWidth (px 800) ] ]
             [ flexDirection column
             ]
         ]
     , importContainer =
         [ width (pct 30)
         , marginRight (px 10)
-        , withMedia [ only screen [ Css.Media.maxWidth (px 1150) ] ]
+        , withMedia [ only screen [ Css.Media.maxWidth (px 800) ] ]
             [ displayFlex
             , justifyContent center
             , alignItems center
@@ -338,7 +340,7 @@ style =
     , inputsContainer =
         [ displayFlex
         , width (pct 100)
-        , withMedia [ only screen [ Css.Media.maxWidth (px 1150) ] ]
+        , withMedia [ only screen [ Css.Media.maxWidth (px 800) ] ]
             [ flexDirection column
             , alignItems center
             ]
@@ -353,7 +355,7 @@ style =
         , position relative
         , paddingLeft (px 5)
         , borderBottom3 (px 2) solid (hex "#000000")
-        , withMedia [ only screen [ Css.Media.maxWidth (px 1150) ] ]
+        , withMedia [ only screen [ Css.Media.maxWidth (px 800) ] ]
             [ marginBottom (px 10)
             ]
         ]
